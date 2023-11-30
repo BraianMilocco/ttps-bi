@@ -1,20 +1,23 @@
 import sqlite3
 
 # Conectar a la base de datos SQLite
-conexion = sqlite3.connect('db_etl.db')
+conexion = sqlite3.connect("db_etl.db")
 cursor = conexion.cursor()
 
 # Crear tabla 'entidad'
-cursor.execute('''
+cursor.execute(
+    """
 CREATE TABLE IF NOT EXISTS entidad (
     id INTEGER PRIMARY KEY,
     cuit TEXT,
     razon_social TEXT
 )
-''')
+"""
+)
 
 # Crear tabla 'provincia'
-cursor.execute('''
+cursor.execute(
+    """
 CREATE TABLE IF NOT EXISTS provincia (
     id INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
@@ -22,10 +25,12 @@ CREATE TABLE IF NOT EXISTS provincia (
     poblacion INTEGER NOT NULL,
     dias_duracion_certificado INTEGER NOT NULL
 )
-''')
+"""
+)
 
 # Crear tabla 'user'
-cursor.execute('''
+cursor.execute(
+    """
 CREATE TABLE IF NOT EXISTS user (
     id INTEGER PRIMARY KEY,
     email TEXT NOT NULL,
@@ -34,10 +39,12 @@ CREATE TABLE IF NOT EXISTS user (
     provincia_id INTEGER,
     FOREIGN KEY (provincia_id) REFERENCES provincia(id)
 )
-''')
+"""
+)
 
 # Crear tabla 'espacio_obligado'
-cursor.execute('''
+cursor.execute(
+    """
 CREATE TABLE IF NOT EXISTS espacio_obligado (
     id INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
@@ -56,10 +63,12 @@ CREATE TABLE IF NOT EXISTS espacio_obligado (
     FOREIGN KEY (provincia_id) REFERENCES provincia(id),
     FOREIGN KEY (entidad_id) REFERENCES entidad(id)
 )
-''')
+"""
+)
 
 # Crear tabla 'muerte_subita'
-cursor.execute('''
+cursor.execute(
+    """
 CREATE TABLE IF NOT EXISTS muerte_subita (
     id INTEGER PRIMARY KEY,
     fecha DATE NOT NULL,
@@ -75,10 +84,12 @@ CREATE TABLE IF NOT EXISTS muerte_subita (
     espacio_id INTEGER,
     FOREIGN KEY (espacio_id) REFERENCES espacio_obligado(id)
 )
-''')
+"""
+)
 
 # Crear tabla 'user_espacio'
-cursor.execute('''
+cursor.execute(
+    """
 CREATE TABLE IF NOT EXISTS user_espacio (
     id INTEGER PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -86,7 +97,8 @@ CREATE TABLE IF NOT EXISTS user_espacio (
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (espacio_id) REFERENCES espacio_obligado(id)
 )
-''')
+"""
+)
 
 # Confirmar y guardar los cambios en la base de datos
 conexion.commit()

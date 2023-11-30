@@ -1,31 +1,68 @@
 import sqlite3
 
-def conectar_db(ruta_db):
-    conexion = sqlite3.connect(ruta_db)
-    return conexion
 
-def consultar_db(conexion, consulta):
-    cursor = conexion.cursor()
-    cursor.execute(consulta)
-    resultados = cursor.fetchall()
-    cursor.close()
-    return resultados
+class DB:
+    RUTA_DB = "test.db"
 
-# Ruta a tu archivo de base de datos SQLite
-ruta_db = 'test.db'
+    def __init__(self):
+        self.conexion = None
 
-# Conectar a la base de datos
-conexion = conectar_db(ruta_db)
+    def conectar_db(self, ruta_db=None):
+        if ruta_db is None:
+            ruta_db = self.RUTA_DB
+        conexion = sqlite3.connect(ruta_db)
+        self.conexion = conexion
+        return conexion
 
-# Ejemplo de consulta SQL
-consulta = 'SELECT * FROM deas;'
+    def consultar_db(self, consulta):
+        cursor = self.conexion.cursor()
+        cursor.execute(consulta)
+        resultados = cursor.fetchall()
+        cursor.close()
+        return resultados
 
-# Realizar la consulta
-resultados = consultar_db(conexion, consulta)
+    def insertar_db(self, consulta):
+        try:
+            cursor = self.conexion.cursor()
+            cursor.execute(consulta)
+            self.conexion.commit()  # Importante para confirmar la inserción
+            cursor.close()
+            return True  # O algún mensaje de éxito
+        except Exception as e:
+            print(f"Error al insertar: {e}")
+            return False  # O algún mensaje de error
+        return True
 
-# Imprimir resultados
-for fila in resultados:
-    print(fila)
+    def close_db(self):
+        self.conexion.close()
+        self.conexion = None
 
-# Cerrar la conexión
-conexion.close()
+    def modificar_tabla_espacios_obligados(self):
+        try:
+            cursor = self.conexion.cursor()
+            cursor.execute(
+                "ALTER TABLE espacios_obligados ADD COLUMN estado_auxiliar TIPO_DATO"
+            )
+            cursor.execute("UPDATE espacios_obligados SET estado_auxiliar = estado")
+            self.conexion.commit()
+            cursor.close()
+            return True
+        except Exception as e:
+            print(f"Error al modificar la tabla: {e}")
+            return False
+
+
+# # # Ejemplo de consulta SQL
+# db = DB()
+# db.conectar_db()
+# # consulta = 'SELECT * FROM deas;'
+
+# # # Realizar la consulta
+# resultados = db.consultar_db(consulta)
+
+# # Imprimir resultados
+# for fila in resultados:
+#     print(fila)
+
+# # # Cerrar la conexión
+# db.conexion.close()
