@@ -51,6 +51,22 @@ class DB:
             print(f"Error al modificar la tabla: {e}")
             return False
 
+    def modificar_tabla_agregar_fecha_nacimiento(self):
+        try:
+            cursor = self.conexion.cursor()
+            # Agregar la columna fecha_nacimiento de tipo DATETIME
+            cursor.execute("ALTER TABLE users ADD COLUMN fecha_nacimiento DATETIME")
+
+            # Opcional: Actualizar la columna con datos, si es necesario
+            # Aquí tendrás que definir cómo quieres establecer estas fechas
+
+            self.conexion.commit()
+            cursor.close()
+            return True
+        except Exception as e:
+            print(f"Error al modificar la tabla: {e}")
+            return False
+
 
 # # # Ejemplo de consulta SQL
 # db = DB()

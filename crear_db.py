@@ -72,7 +72,7 @@ cursor.execute(
 CREATE TABLE IF NOT EXISTS muerte_subita (
     id INTEGER PRIMARY KEY,
     fecha DATE NOT NULL,
-    sexo CHAR(1),
+    sexo CHAR(15),
     edad INTEGER,
     fallecio BOOLEAN,
     rcp BOOLEAN,

@@ -142,57 +142,285 @@ def get_espacio(id, sede_id):
 #         sedes = []
 
 # Crear Espacio
-espacios = []
-espacios_creados = 0
-id_sede_start = 5020
-while id_sede_start < 1000020:
-    espacios.append(get_espacio(espacios_creados, id_sede_start))
-    espacios_creados += 1
-    id_sede_start += 1
-    if espacios_creados == INSERT_AT:
-        consulta = "INSERT INTO espacios_obligados (id, nombre, aprobado, estado, estado_auxiliar, sede_id, cardio_asistido_desde, cardio_asistido_vence, cardio_asistido_vencido, ddjj_personal_capacitado, ddjj_senaletica_adecuada, ddjj_cantidad_deas) VALUES "
-        for espacio in espacios:
-            consulta += (
-                '({}, "{}", {}, "{}", "{}", {}, "{}", "{}", {}, {}, {}, {}),'.format(
-                    espacio["id"],
-                    espacio["nombre"],
-                    espacio["aprobado"],
-                    espacio["estado"],
-                    espacio["estado_auxiliar"],
-                    espacio["sede_id"],
-                    espacio["cardio_asistido_desde"],
-                    espacio["cardio_asistido_vence"],
-                    espacio["cardio_asistido_vencido"],
-                    espacio["ddjj_personal_capacitado"],
-                    espacio["ddjj_senaletica_adecuada"],
-                    espacio["ddjj_cantidad_deas"],
-                )
+# espacios = []
+# espacios_creados = 0
+# id_sede_start = 5020
+# while id_sede_start < 1000020:
+#     espacios.append(get_espacio(espacios_creados, id_sede_start))
+#     espacios_creados += 1
+#     id_sede_start += 1
+#     if espacios_creados == INSERT_AT:
+#         consulta = "INSERT INTO espacios_obligados (id, nombre, aprobado, estado, estado_auxiliar, sede_id, cardio_asistido_desde, cardio_asistido_vence, cardio_asistido_vencido, ddjj_personal_capacitado, ddjj_senaletica_adecuada, ddjj_cantidad_deas) VALUES "
+#         for espacio in espacios:
+#             consulta += (
+#                 '({}, "{}", {}, "{}", "{}", {}, "{}", "{}", {}, {}, {}, {}),'.format(
+#                     espacio["id"],
+#                     espacio["nombre"],
+#                     espacio["aprobado"],
+#                     espacio["estado"],
+#                     espacio["estado_auxiliar"],
+#                     espacio["sede_id"],
+#                     espacio["cardio_asistido_desde"],
+#                     espacio["cardio_asistido_vence"],
+#                     espacio["cardio_asistido_vencido"],
+#                     espacio["ddjj_personal_capacitado"],
+#                     espacio["ddjj_senaletica_adecuada"],
+#                     espacio["ddjj_cantidad_deas"],
+#                 )
+#             )
+#         consulta = consulta[:-1] + ";"
+#         resultad = db.insertar_db(consulta)
+#         if not resultad:
+#             break
+#         espacios = []
+# if espacios:
+#     consulta = "INSERT INTO espacios_obligados (id, nombre, aprobado, estado, estado_auxiliar, sede_id, cardio_asistido_desde, cardio_asistido_vence, cardio_asistido_vencido, ddjj_personal_capacitado, ddjj_senaletica_adecuada, ddjj_cantidad_deas) VALUES "
+#     for espacio in espacios:
+#         consulta += (
+#             '({}, "{}", {}, "{}", "{}", {}, "{}", "{}", {}, {}, {}, {}),'.format(
+#                 espacio["id"],
+#                 espacio["nombre"],
+#                 espacio["aprobado"],
+#                 espacio["estado"],
+#                 espacio["estado_auxiliar"],
+#                 espacio["sede_id"],
+#                 espacio["cardio_asistido_desde"],
+#                 espacio["cardio_asistido_vence"],
+#                 espacio["cardio_asistido_vencido"],
+#                 espacio["ddjj_personal_capacitado"],
+#                 espacio["ddjj_senaletica_adecuada"],
+#                 espacio["ddjj_cantidad_deas"],
+#             )
+#         )
+#     consulta = consulta[:-1] + ";"
+#     resultad = db.insertar_db(consulta)
+#     espacios_creados = 0
+#     espacios = []
+
+# Agregar user y espacio_user
+
+
+# def get_representante(id):
+#     _id = id + 10
+#     return {
+#         "id": _id,
+#         "email": f"{id_generator(25)}@mail.com",
+#         "hashed_password": id_generator(25),
+#         "fecha_nacimiento": generar_fecha_aleatoria("1949-01-01", "2005-01-01"),
+#         "rol": "representante",
+#     }
+
+# def get_espacio_user(id):
+#     _id = id + 10
+#     valida = get_random_index([True, False, True, True, False, True, True, True, True ])
+#     pendiente = get_random_index([True, False, True, True ]) if not valida else False
+#     return {
+#         "espacio_id": _id,
+#         "user_id": _id,
+#         "valida": valida,
+#         "pendiente": pendiente,
+#         "fecha_creacion": generar_fecha_aleatoria("2023-01-01", "2023-12-20"),
+#     }
+
+# representantes = []
+# representantes_creados = 0
+# espacios_user = []
+# espacios_user_creados = 0
+
+# for i in range(1000009):
+#     representantes.append(get_representante(i))
+#     representantes_creados += 1
+#     espacios_user.append(get_espacio_user(i))
+#     if representantes_creados == INSERT_AT:
+#         consulta = (
+#             "INSERT INTO users (id, fecha_nacimiento, rol, email, hashed_password) VALUES "
+#         )
+#         for representante in representantes:
+#             consulta += '({}, "{}", "{}", "{}", "{}"),'.format(
+#                 representante["id"],
+#                 representante["fecha_nacimiento"],
+#                 representante["rol"],
+#                 representante["email"],
+#                 representante["hashed_password"],
+#             )
+#         consulta = consulta[:-1] + ";"
+#         resultad = db.insertar_db(consulta)
+#         if not resultad:
+#             break
+#         consulta = (
+#             "INSERT INTO espacio_user (espacio_id, user_id, valida, pendiente, fecha_creacion) VALUES "
+#         )
+#         for espacio_user in espacios_user:
+#             consulta += '({}, {}, {}, {}, "{}"),'.format(
+#                 espacio_user["espacio_id"],
+#                 espacio_user["user_id"],
+#                 espacio_user["valida"],
+#                 espacio_user["pendiente"],
+#                 espacio_user["fecha_creacion"],
+#             )
+#         consulta = consulta[:-1] + ";"
+#         resultad = db.insertar_db(consulta)
+#         if not resultad:
+#             break
+#         espacios_user = []
+#         representantes_creados = 0
+#         representantes = []
+
+# if representantes_creados:
+#     consulta = (
+#         "INSERT INTO users (id, rol, fecha_nacimiento, email, hashed_password) VALUES "
+#     )
+#     for representante in representantes:
+#         consulta += '({}, "{}", "{}", "{}", "{}"),'.format(
+#             representante["id"],
+#             representante["rol"],
+#             representante["fecha_nacimiento"],
+#             representante["email"],
+#             representante["hashed_password"],
+#         )
+#     consulta = consulta[:-1] + ";"
+#     resultad = db.insertar_db(consulta)
+#     consulta = (
+#         "INSERT INTO espacio_user (espacio_id, user_id, valida, pendiente, fecha_creacion) VALUES "
+#     )
+#     for espacio_user in espacios_user:
+#         consulta += '({}, {}, {}, {}, "{}"),'.format(
+#             espacio_user["espacio_id"],
+#             espacio_user["user_id"],
+#             espacio_user["valida"],
+#             espacio_user["pendiente"],
+#             espacio_user["fecha_creacion"],
+#         )
+#     consulta = consulta[:-1] + ";"
+#     resultad = db.insertar_db(consulta)
+#     espacios_user = []
+#     representantes_creados = 0
+#     representantes = []
+
+
+def get_muerte_subita(id):
+    _id = id + 5
+    user_id = id +10
+    rcp = get_random_index([True, False, True, True, False, True, True, True, True ])
+    tiempo_rcp = get_random_from_range(0, 30) if rcp else 0
+    return {
+        "id": _id,
+        "fecha": generar_fecha_aleatoria("2023-01-01", "2023-12-20"),
+        "sexo": get_random_index(["Masculino", "Femenino", "X", "Masculino", "Femenino", "Masculino", "Femenino"]),
+        "edad": get_random_from_range(1, 96),
+        "fallecio": get_random_index([True, False, False, True, False, False, True, False, True ]),
+        "espacio_obligado_id": get_random_from_range(10, 1000020),
+        "rcp": rcp,
+        "tiempo_rcp": tiempo_rcp,
+        "user_id": user_id,
+    }
+
+def get_incovenientes(id, fecha):
+    _id = id + 5
+    respondio_con_descargas_electricas = get_random_index([True, False, False, True, False, False, True, False, True ])
+    cantidad_de_descargas = get_random_from_range(0, 30) if respondio_con_descargas_electricas else 0
+    
+    return {
+        "id": _id,
+        "fecha": fecha,
+        "falta_insumos": get_random_index([True, False, False, True, False, False, True, False, True ]),
+        "estaba_en_sitio": get_random_index([True, False, False, True, False, False, True, False, True ]),
+        "respondio_con_descargas_electricas": respondio_con_descargas_electricas,
+        "cantidad_de_descargas": cantidad_de_descargas,
+        "muerte_subita_id": _id,
+    }
+# Agregar muerte súbita e incovenientes
+muertesubita = []
+muertesubita_creados = 0
+incovenientes = []
+incovenientes_creados = 0
+
+
+for i in range(450000):
+    muerte_ = get_muerte_subita(i)
+    muertesubita.append(muerte_)
+    muertesubita_creados += 1
+    tiene_incovenientes = get_random_index([True, False, False, True, False, False, True, False, True ])
+    if tiene_incovenientes:
+        incovenientes.append(get_incovenientes(i, muerte_["fecha"]))
+        incovenientes_creados += 1
+    if muertesubita_creados == INSERT_AT:
+        consulta = (
+            "INSERT INTO muertes_subitas (id, fecha, sexo, edad, fallecio, espacio_obligado_id, rcp, tiempo_rcp, user_id) VALUES "
+        )
+        for muerte in muertesubita:
+            consulta += '({}, "{}", "{}", {}, {}, {}, {}, {}, {}),'.format(
+                muerte["id"],
+                muerte["fecha"],
+                muerte["sexo"],
+                muerte["edad"],
+                muerte["fallecio"],
+                muerte["espacio_obligado_id"],
+                muerte["rcp"],
+                muerte["tiempo_rcp"],
+                muerte["user_id"],
             )
         consulta = consulta[:-1] + ";"
         resultad = db.insertar_db(consulta)
         if not resultad:
             break
-        espacios = []
-if espacios:
-    consulta = "INSERT INTO espacios_obligados (id, nombre, aprobado, estado, estado_auxiliar, sede_id, cardio_asistido_desde, cardio_asistido_vence, cardio_asistido_vencido, ddjj_personal_capacitado, ddjj_senaletica_adecuada, ddjj_cantidad_deas) VALUES "
-    for espacio in espacios:
-        consulta += (
-            '({}, "{}", {}, "{}", "{}", {}, "{}", "{}", {}, {}, {}, {}),'.format(
-                espacio["id"],
-                espacio["nombre"],
-                espacio["aprobado"],
-                espacio["estado"],
-                espacio["estado_auxiliar"],
-                espacio["sede_id"],
-                espacio["cardio_asistido_desde"],
-                espacio["cardio_asistido_vence"],
-                espacio["cardio_asistido_vencido"],
-                espacio["ddjj_personal_capacitado"],
-                espacio["ddjj_senaletica_adecuada"],
-                espacio["ddjj_cantidad_deas"],
+        if incovenientes:
+            consulta = (
+                "INSERT INTO incovenientes (id, fecha, falta_insumos, estaba_en_sitio, respondio_con_descargas_electricas, cantidad_de_descargas, muerte_subita_id) VALUES "
             )
+            for inconveniente in incovenientes:
+                consulta += '({}, "{}", {}, {}, {}, {}, {}),'.format(
+                    inconveniente["id"],
+                    inconveniente["fecha"],
+                    inconveniente["falta_insumos"],
+                    inconveniente["estaba_en_sitio"],
+                    inconveniente["respondio_con_descargas_electricas"],
+                    inconveniente["cantidad_de_descargas"],
+                    inconveniente["muerte_subita_id"],
+                )
+            consulta = consulta[:-1] + ";"
+            resultad = db.insertar_db(consulta)
+            if not resultad:
+                break
+        muertesubita = []
+        muertesubita_creados = 0
+        incovenientes = []
+        incovenientes_creados = 0
+if muertesubita:
+    consulta = (
+        "INSERT INTO muertes_subitas (id, fecha, sexo, edad, fallecio, espacio_obligado_id, rcp, tiempo_rcp, user_id) VALUES "
+    )
+    for muerte in muertesubita:
+        consulta += '({}, "{}", "{}", {}, {}, {}, {}, {}, {}),'.format(
+            muerte["id"],
+            muerte["fecha"],
+            muerte["sexo"],
+            muerte["edad"],
+            muerte["fallecio"],
+            muerte["espacio_obligado_id"],
+            muerte["rcp"],
+            muerte["tiempo_rcp"],
+            muerte["user_id"],
         )
     consulta = consulta[:-1] + ";"
     resultad = db.insertar_db(consulta)
-    espacios_creados = 0
-    espacios = []
+    if incovenientes:
+        consulta = (
+            "INSERT INTO incovenientes (id, fecha, falta_insumos, estaba_en_sitio, respondio_con_descargas_electricas, cantidad_de_descargas, muerte_subita_id) VALUES "
+        )
+        for inconveniente in incovenientes:
+            consulta += '({}, "{}", {}, {}, {}, {}, {}),'.format(
+                inconveniente["id"],
+                inconveniente["fecha"],
+                inconveniente["falta_insumos"],
+                inconveniente["estaba_en_sitio"],
+                inconveniente["respondio_con_descargas_electricas"],
+                inconveniente["cantidad_de_descargas"],
+                inconveniente["muerte_subita_id"],
+            )
+        consulta = consulta[:-1] + ";"
+        resultad = db.insertar_db(consulta)
+    muertesubita = []
+    muertesubita_creados = 0
+    incovenientes = []
+    incovenientes_creados = 0
