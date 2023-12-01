@@ -1,0 +1,4 @@
+PRESTARLE ATENCION SOLO A:
+
+- CREAR_DB (PARA CREAR LA DB LOCAL)
+- sqls_base_db_etl (Para cargar a la db info basica de provincias y localidades)

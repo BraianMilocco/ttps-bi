@@ -13,80 +13,92 @@ from auxiliares import (
     generar_fecha_aleatoria,
     fechas_estado_vencido,
 )
+from localidades import localidades
 
 db = DB()
-db.conectar_db()
+db.conectar_db("db_etl.db")
 
 INSERT_AT = 5000
 
+base_query = "INSERT INTO localidades (nombre, provincias_id, poblacion, extension_km) VALUES "
+for localidad in localidades:
+    base_query += '("{}", {}, {}, {}),'.format(
+        localidad["nombre"],
+        localidad["provincia_id"],
+        localidad["poblacion"],
+        localidad["extension_km"],
+    )
+base_query = base_query[:-1] + ";"
+resultad = db.insertar_db(base_query)
+print(resultad)
 
-def get_ids_entidades():
-    consulta = "SELECT id FROM entidades;"
-    resultados = db.consultar_db(consulta)
-    return [resultado[0] for resultado in resultados]
-
-
-def get_entidad(id):
-    base_id = 100
-
-    return {
-        "id": base_id + id,
-        "cuit": id_generator(25, string.digits),
-        "razon_social": id_generator(30),
-    }
-
-
-def get_sede(id, entidad_id):
-    base_id = 20
-    _id = base_id + id
-    sector = get_random_index(sectores)
-    tipo = get_random_index(tipos[sector])
-    return {
-        "id": _id,
-        "nombre": id_generator(25),
-        "numero": _id,
-        "sector": sector,
-        "tipo": tipo,
-        "latitud": latitudes(),
-        "longitud": longitudes(),
-        "superficie": get_random_from_range(100, 10000),
-        "cantidad_pisos": get_random_from_range(0, 20),
-        "cantidad_personas_externas": get_random_from_range(0, 1000),
-        "cantidad_personas_estables": get_random_from_range(0, 1000),
-        "provincia_id": get_random_from_range(1, 24),
-        "entidad_id": entidad_id,
-    }
+# def get_ids_entidades():
+#     consulta = "SELECT id FROM entidades;"
+#     resultados = db.consultar_db(consulta)
+#     return [resultado[0] for resultado in resultados]
 
 
-def get_espacio(id, sede_id):
-    id_base = 5020
-    _id = id_base + id
-    estado_auxiliar = get_random_index(estados)
-    desde, hasta = fechas_estado_vencido(estado_auxiliar)
-    return {
-        "id": _id,
-        "nombre": id_generator(25),
-        "aprobado": get_random_index(
-            [True, False, True, True, True, True, True, True, True]
-        ),
-        "estado": "En proceso de ser Cardio-Asistido",
-        "estado_auxiliar": estado_auxiliar,
-        "sede_id": sede_id,
-        "cardio_asistido_desde": desde,
-        "cardio_asistido_vence": hasta,
-        "cardio_asistido_vencido": (
-            estado_auxiliar == "Cardio-Asistido Certificado Vencido"
-        ),
-        "ddjj_personal_capacitado": True
-        if estado_auxiliar != "En proceso de ser Cardio-Asistido"
-        else get_random_index([True, False]),
-        "ddjj_senaletica_adecuada": True
-        if estado_auxiliar != "En proceso de ser Cardio-Asistido"
-        else get_random_index([True, False]),
-        "ddjj_cantidad_deas": get_random_from_range(0, 10)
-        if estado_auxiliar != "En proceso de ser Cardio-Asistido"
-        else get_random_from_range(1, 300),
-    }
+# def get_entidad(id):
+#     base_id = 100
+
+#     return {
+#         "id": base_id + id,
+#         "cuit": id_generator(25, string.digits),
+#         "razon_social": id_generator(30),
+#     }
+
+
+# def get_sede(id, entidad_id):
+#     base_id = 20
+#     _id = base_id + id
+#     sector = get_random_index(sectores)
+#     tipo = get_random_index(tipos[sector])
+#     return {
+#         "id": _id,
+#         "nombre": id_generator(25),
+#         "numero": _id,
+#         "sector": sector,
+#         "tipo": tipo,
+#         "latitud": latitudes(),
+#         "longitud": longitudes(),
+#         "superficie": get_random_from_range(100, 10000),
+#         "cantidad_pisos": get_random_from_range(0, 20),
+#         "cantidad_personas_externas": get_random_from_range(0, 1000),
+#         "cantidad_personas_estables": get_random_from_range(0, 1000),
+#         "provincia_id": get_random_from_range(1, 24),
+#         "entidad_id": entidad_id,
+#     }
+
+
+# def get_espacio(id, sede_id):
+#     id_base = 5020
+#     _id = id_base + id
+#     estado_auxiliar = get_random_index(estados)
+#     desde, hasta = fechas_estado_vencido(estado_auxiliar)
+#     return {
+#         "id": _id,
+#         "nombre": id_generator(25),
+#         "aprobado": get_random_index(
+#             [True, False, True, True, True, True, True, True, True]
+#         ),
+#         "estado": "En proceso de ser Cardio-Asistido",
+#         "estado_auxiliar": estado_auxiliar,
+#         "sede_id": sede_id,
+#         "cardio_asistido_desde": desde,
+#         "cardio_asistido_vence": hasta,
+#         "cardio_asistido_vencido": (
+#             estado_auxiliar == "Cardio-Asistido Certificado Vencido"
+#         ),
+#         "ddjj_personal_capacitado": True
+#         if estado_auxiliar != "En proceso de ser Cardio-Asistido"
+#         else get_random_index([True, False]),
+#         "ddjj_senaletica_adecuada": True
+#         if estado_auxiliar != "En proceso de ser Cardio-Asistido"
+#         else get_random_index([True, False]),
+#         "ddjj_cantidad_deas": get_random_from_range(0, 10)
+#         if estado_auxiliar != "En proceso de ser Cardio-Asistido"
+#         else get_random_from_range(1, 300),
+#     }
 
 
 # cantidad_creada = 0
@@ -298,129 +310,146 @@ def get_espacio(id, sede_id):
 #     representantes = []
 
 
-def get_muerte_subita(id):
-    _id = id + 5
-    user_id = id +10
-    rcp = get_random_index([True, False, True, True, False, True, True, True, True ])
-    tiempo_rcp = get_random_from_range(0, 30) if rcp else 0
-    return {
-        "id": _id,
-        "fecha": generar_fecha_aleatoria("2023-01-01", "2023-12-20"),
-        "sexo": get_random_index(["Masculino", "Femenino", "X", "Masculino", "Femenino", "Masculino", "Femenino"]),
-        "edad": get_random_from_range(1, 96),
-        "fallecio": get_random_index([True, False, False, True, False, False, True, False, True ]),
-        "espacio_obligado_id": get_random_from_range(10, 1000020),
-        "rcp": rcp,
-        "tiempo_rcp": tiempo_rcp,
-        "user_id": user_id,
-    }
-
-def get_incovenientes(id, fecha):
-    _id = id + 5
-    respondio_con_descargas_electricas = get_random_index([True, False, False, True, False, False, True, False, True ])
-    cantidad_de_descargas = get_random_from_range(0, 30) if respondio_con_descargas_electricas else 0
-    
-    return {
-        "id": _id,
-        "fecha": fecha,
-        "falta_insumos": get_random_index([True, False, False, True, False, False, True, False, True ]),
-        "estaba_en_sitio": get_random_index([True, False, False, True, False, False, True, False, True ]),
-        "respondio_con_descargas_electricas": respondio_con_descargas_electricas,
-        "cantidad_de_descargas": cantidad_de_descargas,
-        "muerte_subita_id": _id,
-    }
-# Agregar muerte súbita e incovenientes
-muertesubita = []
-muertesubita_creados = 0
-incovenientes = []
-incovenientes_creados = 0
+# def get_muerte_subita(id):
+#     _id = id + 5
+#     user_id = id + 10
+#     rcp = get_random_index([True, False, True, True, False, True, True, True, True])
+#     tiempo_rcp = get_random_from_range(0, 30) if rcp else 0
+#     return {
+#         "id": _id,
+#         "fecha": generar_fecha_aleatoria("2023-01-01", "2023-12-20"),
+#         "sexo": get_random_index(
+#             [
+#                 "Masculino",
+#                 "Femenino",
+#                 "X",
+#                 "Masculino",
+#                 "Femenino",
+#                 "Masculino",
+#                 "Femenino",
+#             ]
+#         ),
+#         "edad": get_random_from_range(1, 96),
+#         "fallecio": get_random_index(
+#             [True, False, False, True, False, False, True, False, True]
+#         ),
+#         "espacio_obligado_id": get_random_from_range(10, 1000020),
+#         "rcp": rcp,
+#         "tiempo_rcp": tiempo_rcp,
+#         "user_id": user_id,
+#     }
 
 
-for i in range(450000):
-    muerte_ = get_muerte_subita(i)
-    muertesubita.append(muerte_)
-    muertesubita_creados += 1
-    tiene_incovenientes = get_random_index([True, False, False, True, False, False, True, False, True ])
-    if tiene_incovenientes:
-        incovenientes.append(get_incovenientes(i, muerte_["fecha"]))
-        incovenientes_creados += 1
-    if muertesubita_creados == INSERT_AT:
-        consulta = (
-            "INSERT INTO muertes_subitas (id, fecha, sexo, edad, fallecio, espacio_obligado_id, rcp, tiempo_rcp, user_id) VALUES "
-        )
-        for muerte in muertesubita:
-            consulta += '({}, "{}", "{}", {}, {}, {}, {}, {}, {}),'.format(
-                muerte["id"],
-                muerte["fecha"],
-                muerte["sexo"],
-                muerte["edad"],
-                muerte["fallecio"],
-                muerte["espacio_obligado_id"],
-                muerte["rcp"],
-                muerte["tiempo_rcp"],
-                muerte["user_id"],
-            )
-        consulta = consulta[:-1] + ";"
-        resultad = db.insertar_db(consulta)
-        if not resultad:
-            break
-        if incovenientes:
-            consulta = (
-                "INSERT INTO incovenientes (id, fecha, falta_insumos, estaba_en_sitio, respondio_con_descargas_electricas, cantidad_de_descargas, muerte_subita_id) VALUES "
-            )
-            for inconveniente in incovenientes:
-                consulta += '({}, "{}", {}, {}, {}, {}, {}),'.format(
-                    inconveniente["id"],
-                    inconveniente["fecha"],
-                    inconveniente["falta_insumos"],
-                    inconveniente["estaba_en_sitio"],
-                    inconveniente["respondio_con_descargas_electricas"],
-                    inconveniente["cantidad_de_descargas"],
-                    inconveniente["muerte_subita_id"],
-                )
-            consulta = consulta[:-1] + ";"
-            resultad = db.insertar_db(consulta)
-            if not resultad:
-                break
-        muertesubita = []
-        muertesubita_creados = 0
-        incovenientes = []
-        incovenientes_creados = 0
-if muertesubita:
-    consulta = (
-        "INSERT INTO muertes_subitas (id, fecha, sexo, edad, fallecio, espacio_obligado_id, rcp, tiempo_rcp, user_id) VALUES "
-    )
-    for muerte in muertesubita:
-        consulta += '({}, "{}", "{}", {}, {}, {}, {}, {}, {}),'.format(
-            muerte["id"],
-            muerte["fecha"],
-            muerte["sexo"],
-            muerte["edad"],
-            muerte["fallecio"],
-            muerte["espacio_obligado_id"],
-            muerte["rcp"],
-            muerte["tiempo_rcp"],
-            muerte["user_id"],
-        )
-    consulta = consulta[:-1] + ";"
-    resultad = db.insertar_db(consulta)
-    if incovenientes:
-        consulta = (
-            "INSERT INTO incovenientes (id, fecha, falta_insumos, estaba_en_sitio, respondio_con_descargas_electricas, cantidad_de_descargas, muerte_subita_id) VALUES "
-        )
-        for inconveniente in incovenientes:
-            consulta += '({}, "{}", {}, {}, {}, {}, {}),'.format(
-                inconveniente["id"],
-                inconveniente["fecha"],
-                inconveniente["falta_insumos"],
-                inconveniente["estaba_en_sitio"],
-                inconveniente["respondio_con_descargas_electricas"],
-                inconveniente["cantidad_de_descargas"],
-                inconveniente["muerte_subita_id"],
-            )
-        consulta = consulta[:-1] + ";"
-        resultad = db.insertar_db(consulta)
-    muertesubita = []
-    muertesubita_creados = 0
-    incovenientes = []
-    incovenientes_creados = 0
+# def get_incovenientes(id, fecha):
+#     _id = id + 5
+#     respondio_con_descargas_electricas = get_random_index(
+#         [True, False, False, True, False, False, True, False, True]
+#     )
+#     cantidad_de_descargas = (
+#         get_random_from_range(0, 30) if respondio_con_descargas_electricas else 0
+#     )
+
+#     return {
+#         "id": _id,
+#         "fecha": fecha,
+#         "falta_insumos": get_random_index(
+#             [True, False, False, True, False, False, True, False, True]
+#         ),
+#         "estaba_en_sitio": get_random_index(
+#             [True, False, False, True, False, False, True, False, True]
+#         ),
+#         "respondio_con_descargas_electricas": respondio_con_descargas_electricas,
+#         "cantidad_de_descargas": cantidad_de_descargas,
+#         "muerte_subita_id": _id,
+#     }
+
+
+# # Agregar muerte súbita e incovenientes
+# muertesubita = []
+# muertesubita_creados = 0
+# incovenientes = []
+# incovenientes_creados = 0
+
+
+# for i in range(450000):
+#     muerte_ = get_muerte_subita(i)
+#     muertesubita.append(muerte_)
+#     muertesubita_creados += 1
+#     tiene_incovenientes = get_random_index(
+#         [True, False, False, True, False, False, True, False, True]
+#     )
+#     if tiene_incovenientes:
+#         incovenientes.append(get_incovenientes(i, muerte_["fecha"]))
+#         incovenientes_creados += 1
+#     if muertesubita_creados == INSERT_AT:
+#         consulta = "INSERT INTO muertes_subitas (id, fecha, sexo, edad, fallecio, espacio_obligado_id, rcp, tiempo_rcp, user_id) VALUES "
+#         for muerte in muertesubita:
+#             consulta += '({}, "{}", "{}", {}, {}, {}, {}, {}, {}),'.format(
+#                 muerte["id"],
+#                 muerte["fecha"],
+#                 muerte["sexo"],
+#                 muerte["edad"],
+#                 muerte["fallecio"],
+#                 muerte["espacio_obligado_id"],
+#                 muerte["rcp"],
+#                 muerte["tiempo_rcp"],
+#                 muerte["user_id"],
+#             )
+#         consulta = consulta[:-1] + ";"
+#         resultad = db.insertar_db(consulta)
+#         if not resultad:
+#             break
+#         if incovenientes:
+#             consulta = "INSERT INTO incovenientes (id, fecha, falta_insumos, estaba_en_sitio, respondio_con_descargas_electricas, cantidad_de_descargas, muerte_subita_id) VALUES "
+#             for inconveniente in incovenientes:
+#                 consulta += '({}, "{}", {}, {}, {}, {}, {}),'.format(
+#                     inconveniente["id"],
+#                     inconveniente["fecha"],
+#                     inconveniente["falta_insumos"],
+#                     inconveniente["estaba_en_sitio"],
+#                     inconveniente["respondio_con_descargas_electricas"],
+#                     inconveniente["cantidad_de_descargas"],
+#                     inconveniente["muerte_subita_id"],
+#                 )
+#             consulta = consulta[:-1] + ";"
+#             resultad = db.insertar_db(consulta)
+#             if not resultad:
+#                 break
+#         muertesubita = []
+#         muertesubita_creados = 0
+#         incovenientes = []
+#         incovenientes_creados = 0
+# if muertesubita:
+#     consulta = "INSERT INTO muertes_subitas (id, fecha, sexo, edad, fallecio, espacio_obligado_id, rcp, tiempo_rcp, user_id) VALUES "
+#     for muerte in muertesubita:
+#         consulta += '({}, "{}", "{}", {}, {}, {}, {}, {}, {}),'.format(
+#             muerte["id"],
+#             muerte["fecha"],
+#             muerte["sexo"],
+#             muerte["edad"],
+#             muerte["fallecio"],
+#             muerte["espacio_obligado_id"],
+#             muerte["rcp"],
+#             muerte["tiempo_rcp"],
+#             muerte["user_id"],
+#         )
+#     consulta = consulta[:-1] + ";"
+#     resultad = db.insertar_db(consulta)
+#     if incovenientes:
+#         consulta = "INSERT INTO incovenientes (id, fecha, falta_insumos, estaba_en_sitio, respondio_con_descargas_electricas, cantidad_de_descargas, muerte_subita_id) VALUES "
+#         for inconveniente in incovenientes:
+#             consulta += '({}, "{}", {}, {}, {}, {}, {}),'.format(
+#                 inconveniente["id"],
+#                 inconveniente["fecha"],
+#                 inconveniente["falta_insumos"],
+#                 inconveniente["estaba_en_sitio"],
+#                 inconveniente["respondio_con_descargas_electricas"],
+#                 inconveniente["cantidad_de_descargas"],
+#                 inconveniente["muerte_subita_id"],
+#             )
+#         consulta = consulta[:-1] + ";"
+#         resultad = db.insertar_db(consulta)
+#     muertesubita = []
+#     muertesubita_creados = 0
+#     incovenientes = []
+#     incovenientes_creados = 0

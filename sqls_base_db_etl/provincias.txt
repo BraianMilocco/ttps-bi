@@ -1,0 +1,69 @@
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(1, 'Buenos Aires', 307571, 15625084,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(2, 'Córdoba', 165321, 3308876,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(3, 'Santa Fe', 133007, 3300730,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(4, 'Mendoza', 148827, 1741610,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(5, 'Tucumán', 22524, 1448188,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(6, 'Entre Ríos', 78781, 1235994,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(7, 'Salta', 155488, 1214441,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(8, 'Chaco', 99633, 1055259,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(9, 'Corrientes', 88199, 992595,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(10, 'Misiones', 29801, 1097829,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(11, 'San Juan', 89651, 680345,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(12, 'Jujuy', 53219, 673307,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(13, 'Río Negro', 203013, 638645,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(14, 'Neuquén', 94078, 551266,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(15, 'Formosa', 72066, 527895,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(16, 'San Luis', 76748, 432310,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(17, 'Catamarca', 102602, 367820,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(18, 'La Rioja', 89680, 333642,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(19, 'Chubut', 224686, 509108,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(20, 'La Pampa', 143440, 318951,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(21, 'Santa Cruz', 243943, 273964,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(22, 'Tierra del Fuego', 21263, 127205,  2);
+INSERT INTO provincias
+(id, nombre, extension_km, poblacion,  dias_duracion_certificado)
+VALUES(23, 'Santiago del Estero', 136351, 874006,  2);

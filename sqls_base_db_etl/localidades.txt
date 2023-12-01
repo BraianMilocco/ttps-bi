@@ -1,0 +1,345 @@
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(1, 1, 'La Plata', 252, 1457492);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(2, 1, 'Mar del Plata', 942, 945342);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(3, 1, 'Bahía Blanca', 2370, 1881648);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(4, 1, 'Tandil', 567, 1064725);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(5, 1, 'Olavarría', 69, 1182894);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(21, 2, 'Córdoba', 1501, 1703384);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(22, 2, 'Villa Carlos Paz', 2148, 2911578);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(23, 2, 'Río Cuarto', 1562, 692525);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(24, 2, 'Villa María', 162, 1113323);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(25, 2, 'Alta Gracia', 1289, 229392);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(111, 3, 'Santa Fe', 1100, 1857496);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(112, 3, 'Rosario', 500, 957896);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(113, 3, 'Rafaela', 55, 53671);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(114, 3, 'Venado Tuerto', 653, 305741);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(115, 3, 'Reconquista', 221, 127000);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(56, 4, 'Mendoza', 1101, 2169866);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(57, 4, 'San Rafael', 2329, 2010882);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(58, 4, 'Godoy Cruz', 646, 117189);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(59, 4, 'Luján de Cuyo', 878, 1805634);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(60, 4, 'Maipú', 445, 145953);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(106, 5, 'San Miguel de Tucumán', 447, 745724);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(107, 5, 'Tafí Viejo', 1224, 1790373);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(108, 5, 'Yerba Buena', 62, 610583);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(109, 5, 'Concepción', 2444, 784651);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(110, 5, 'Monteros', 185, 141977);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(31, 6, 'Paraná', 1752, 2519391);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(32, 6, 'Concordia', 950, 2862796);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(33, 6, 'Gualeguaychú', 1147, 501900);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(34, 6, 'Concepción del Uruguay', 194, 2775102);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(35, 6, 'Victoria', 1869, 1824701);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(76, 7, 'Salta', 256, 2621008);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(77, 7, 'San Ramón de la Nueva Orán', 221, 2058904);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(78, 7, 'Tartagal', 1638, 2815104);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(79, 7, 'Rosario de la Frontera', 1018, 1676291);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(80, 7, 'Güemes', 2276, 2114921);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(11, 8, 'Resistencia', 1926, 682005);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(12, 8, 'Presidencia Roque Sáenz Peña', 529, 864401);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(13, 8, 'Villa Ángela', 1866, 104024);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(14, 8, 'Charata', 438, 2289586);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(15, 8, 'Castelli', 548, 539409);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(26, 9, 'Corrientes', 1508, 2665407);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(27, 9, 'Goya', 1784, 2060712);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(28, 9, 'Mercedes', 82, 1357687);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(29, 9, 'Curuzú Cuatiá', 1502, 2612745);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(30, 9, 'Paso de los Libres', 2336, 1486268);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(61, 10, 'Posadas', 708, 2656312);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(62, 10, 'Eldorado', 1084, 2950635);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(63, 10, 'Oberá', 768, 166238);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(64, 10, 'Iguazú', 2263, 344321);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(65, 10, 'Leandro N. Alem', 2447, 120940);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(81, 11, 'San Juan', 870, 489216);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(82, 11, 'Rawson', 2088, 1650533);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(83, 11, 'Chimbas', 1362, 615925);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(84, 11, 'Pocito', 2401, 751874);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(85, 11, 'Caucete', 1004, 793225);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(41, 12, 'San Salvador de Jujuy', 2211, 816874);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(42, 12, 'Palpalá', 853, 1053346);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(43, 12, 'San Pedro', 2027, 790283);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(44, 12, 'Libertador General San Martín', 1304, 2342171);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(45, 12, 'El Carmen', 2418, 1981801);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(71, 13, 'Viedma', 870, 2587837);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(72, 13, 'Bariloche', 362, 2498728);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(73, 13, 'General Roca', 1925, 2810081);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(74, 13, 'Cipolletti', 669, 1239824);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(75, 13, 'San Antonio Oeste', 1919, 2735767);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(66, 14, 'Neuquén', 2254, 1971497);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(67, 14, 'San Martín de los Andes', 1484, 2966725);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(68, 14, 'Zapala', 2001, 1792493);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(69, 14, 'Villa La Angostura', 896, 858739);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(70, 14, 'Cutral Có', 1551, 1218071);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(36, 15, 'Formosa', 1041, 2123297);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(37, 15, 'Clorinda', 403, 2574228);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(38, 15, 'Pirané', 2298, 2817490);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(39, 15, 'El Colorado', 1221, 1838017);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(40, 15, 'Laguna Blanca', 1602, 174758);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(86, 16, 'San Luis', 356, 2624663);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(87, 16, 'Villa Mercedes', 1276, 613066);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(88, 16, 'Merlo', 963, 1253386);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(89, 16, 'La Punta', 1140, 361051);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(90, 16, 'Juana Koslay', 1552, 1898843);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(6, 17, 'San Fernando del Valle de Catamarca', 66, 2219111);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(7, 17, 'Tinogasta', 55, 2225577);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(8, 17, 'Santa María', 2098, 2559515);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(9, 17, 'Fiambalá', 127, 112873);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(10, 17, 'Recreo', 2318, 1166920);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(51, 18, 'La Rioja', 926, 259030);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(52, 18, 'Chilecito', 579, 778190);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(53, 18, 'Aimogasta', 2320, 2776549);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(54, 18, 'Famatina', 1653, 2758886);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(55, 18, 'Chamical', 2136, 355905);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(16, 19, 'Rawson', 1381, 1366773);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(17, 19, 'Comodoro Rivadavia', 1297, 2541610);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(18, 19, 'Puerto Madryn', 2278, 1122269);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(19, 19, 'Trelew', 675, 2903110);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(20, 19, 'Esquel', 1614, 2885614);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(46, 20, 'Santa Rosa', 986, 806714);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(47, 20, 'General Pico', 1604, 885493);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(48, 20, 'Victorica', 2038, 2021876);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(49, 20, 'General Acha', 1144, 1766213);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(50, 20, 'Toay', 524, 690189);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(91, 21, 'Río Gallegos', 323, 2527203);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(92, 21, 'Caleta Olivia', 1239, 2484244);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(93, 21, 'El Calafate', 685, 1295482);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(94, 21, 'Pico Truncado', 139, 1174618);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(95, 21, 'Puerto Santa Cruz', 175, 1134038);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(101, 22, 'Ushuaia', 1056, 1288559);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(102, 22, 'Río Grande', 2184, 2544274);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(103, 22, 'Tolhuin', 1879, 1345137);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(104, 22, 'Porvenir', 99, 151184);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(105, 22, 'Puerto Williams', 505, 2652274);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(96, 23, 'Santiago del Estero', 2003, 786609);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(97, 23, 'La Banda', 360, 2653436);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(98, 23, 'Fernández', 1799, 852047);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(99, 23, 'Frías', 1454, 2161168);
+INSERT INTO localidades
+(id, provincias_id, nombre, extension_km, poblacion)
+VALUES(100, 23, 'Loreto', 1130, 195168);

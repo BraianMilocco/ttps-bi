@@ -2,7 +2,7 @@ import sqlite3
 
 
 class DB:
-    RUTA_DB = "test.db"
+    RUTA_DB = "db_etl.db"
 
     def __init__(self):
         self.conexion = None
