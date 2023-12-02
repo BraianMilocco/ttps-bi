@@ -2,7 +2,7 @@ import sqlite3
 
 
 class DB:
-    RUTA_DB = "db_etl.db"
+    RUTA_DB = "test.db"
 
     def __init__(self):
         self.conexion = None
@@ -67,18 +67,17 @@ class DB:
             print(f"Error al modificar la tabla: {e}")
             return False
 
+    def modificar_hechos_espacios(self):
+        cursor = self.conexion.cursor()
+        cursor.execute("ALTER TABLE hechos_espacios ADD COLUMN valida  BOOLEAN")
+        self.conexion.commit()
+        cursor = self.conexion.cursor()
+        cursor.execute("ALTER TABLE hechos_espacios ADD COLUMN pendiente  BOOLEAN")
+        self.conexion.commit()
+        cursor = self.conexion.cursor()
+        cursor.execute("ALTER TABLE hechos_espacios ADD COLUMN fecha_creacion DATETIME")
+        self.conexion.commit()
+        cursor.close()
 
 # # # Ejemplo de consulta SQL
 # db = DB()
-# db.conectar_db()
-# # consulta = 'SELECT * FROM deas;'
-
-# # # Realizar la consulta
-# resultados = db.consultar_db(consulta)
-
-# # Imprimir resultados
-# for fila in resultados:
-#     print(fila)
-
-# # # Cerrar la conexión
-# db.conexion.close()

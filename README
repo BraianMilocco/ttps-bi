@@ -2,3 +2,4 @@ PRESTARLE ATENCION SOLO A:
 
 - CREAR_DB (PARA CREAR LA DB LOCAL)
 - sqls_base_db_etl (Para cargar a la db info basica de provincias y localidades)
+- ETL (Aca va a estar la logica del etl, la idea es que eso se adapte en un endpoint o como quieran y que la db_datawarehouse se conecte a alguna postgres o mysql local)

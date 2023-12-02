@@ -186,6 +186,12 @@ create_table_queries = {
 
             id_localidades INTEGER,
 
+            valida BOOLEAN,
+            
+            pendiente BOOLEAN,
+            
+            fecha_creacion DATETIME,
+    
             FOREIGN KEY (id_sedes_espacios) REFERENCES sedes_espacios (id),
 
             FOREIGN KEY (id_entidades) REFERENCES entidades (id),

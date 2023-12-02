@@ -16,21 +16,21 @@ from auxiliares import (
 from localidades import localidades
 
 db = DB()
-db.conectar_db("db_etl.db")
+db.conectar_db("test.db")
 
 INSERT_AT = 5000
 
-base_query = "INSERT INTO localidades (nombre, provincias_id, poblacion, extension_km) VALUES "
-for localidad in localidades:
-    base_query += '("{}", {}, {}, {}),'.format(
-        localidad["nombre"],
-        localidad["provincia_id"],
-        localidad["poblacion"],
-        localidad["extension_km"],
-    )
-base_query = base_query[:-1] + ";"
-resultad = db.insertar_db(base_query)
-print(resultad)
+# base_query = "INSERT INTO localidades (nombre, provincias_id, poblacion, extension_km) VALUES "
+# for localidad in localidades:
+#     base_query += '("{}", {}, {}, {}),'.format(
+#         localidad["nombre"],
+#         localidad["provincia_id"],
+#         localidad["poblacion"],
+#         localidad["extension_km"],
+#     )
+# base_query = base_query[:-1] + ";"
+# resultad = db.insertar_db(base_query)
+# print(resultad)
 
 # def get_ids_entidades():
 #     consulta = "SELECT id FROM entidades;"
@@ -213,11 +213,11 @@ print(resultad)
 
 
 # def get_representante(id):
-#     _id = id + 10
+#     _id = id + 1000100
 #     return {
 #         "id": _id,
-#         "email": f"{id_generator(25)}@mail.com",
-#         "hashed_password": id_generator(25),
+#         "email": f"{id_generator(256)}@mail.com",
+#         "hashed_password": id_generator(26),
 #         "fecha_nacimiento": generar_fecha_aleatoria("1949-01-01", "2005-01-01"),
 #         "rol": "representante",
 #     }
@@ -227,7 +227,7 @@ print(resultad)
 #     valida = get_random_index([True, False, True, True, False, True, True, True, True ])
 #     pendiente = get_random_index([True, False, True, True ]) if not valida else False
 #     return {
-#         "espacio_id": _id,
+#         "espacio_id": get_random_from_range(5020, 100000),
 #         "user_id": _id,
 #         "valida": valida,
 #         "pendiente": pendiente,
@@ -239,7 +239,7 @@ print(resultad)
 # espacios_user = []
 # espacios_user_creados = 0
 
-# for i in range(1000009):
+# for i in range(250000):
 #     representantes.append(get_representante(i))
 #     representantes_creados += 1
 #     espacios_user.append(get_espacio_user(i))
