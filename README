@@ -6,3 +6,5 @@ PRESTARLE ATENCION SOLO A:
 
 
 SI quieren hacer pruebas hagan copia de db_etl_provincias_y_localidades.db que ya tiene los datos de esos campos y agiliza
+
+por si la cagamos y perdemos la db, dejo esta rama que contiene el archivo correcto
