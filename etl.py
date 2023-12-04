@@ -6,7 +6,7 @@ db_original = DB()
 db_original.conectar_db("test.db")
 
 db_datawarehouse = DB()
-db_datawarehouse.conectar_db("db_etl_testear_todo.db")
+db_datawarehouse.conectar_db("db_etl_test.db")
 
 def data_or_null(data):
     if data:
@@ -23,7 +23,7 @@ def get_entidades(offset=0, limit=10000):
 def get_sedes_espacios(offset=0, limit=50000):
     consulta = (
         "SELECT e.id, s.sector, s.tipo, s.superficie, s.cantidad_pisos, s.cantidad_personas_externas, "
-        "s.cantidad_personas_estables, e.aprobado, e.estado, e.cardio_asistido_desde, e.cardio_asistido_vence, "
+        "s.cantidad_personas_estables, e.aprobado, e.estado_auxiliar, e.cardio_asistido_desde, e.cardio_asistido_vence, "
         "e.ddjj_personal_capacitado, e.ddjj_senaletica_adecuada, e.ddjj_cantidad_deas FROM sedes as s, espacios_obligados as e "
         f"WHERE e.sede_id = s.id LIMIT {limit} OFFSET {offset}"
     )
@@ -55,7 +55,7 @@ def get_hechos_espacios(offset=0, limit=10000):
     try:
         consulta = (
         "SELECT  espacios_obligados.id, sedes.entidad_id, espacio_user.user_id, espacio_user.valida, espacio_user.pendiente, "
-        "espacio_user.fecha_creacion, sedes.provincia_id "
+        "espacio_user.fecha_creacion, sedes.localidad_id "
         "FROM  espacios_obligados INNER JOIN sedes  ON espacios_obligados.sede_id = sedes.id "
         "INNER  JOIN espacio_user ON espacios_obligados.id = espacio_user.espacio_id "
         f"LIMIT {limit} OFFSET {offset}"
@@ -69,10 +69,11 @@ def get_hechos_espacios(offset=0, limit=10000):
 def get_hechos_muertes_subitas(offset=0, limit=10000):
     try:
         consulta = (
-            "SELECT espacios_obligados.id, muertes_subitas.id, incovenientes.id AS i_id "
-            "FROM  espacios_obligados "
+            "SELECT espacios_obligados.id, muertes_subitas.id, incovenientes.id, sedes.localidad_id "
+            "FROM espacios_obligados "
+            "INNER JOIN sedes ON espacios_obligados.sede_id = sedes.id "
             "INNER JOIN muertes_subitas ON muertes_subitas.espacio_obligado_id = espacios_obligados.id "
-            "INNER JOIN incovenientes ON muertes_subitas.id = incovenientes.id "
+            "LEFT JOIN incovenientes ON muertes_subitas.id = incovenientes.muerte_subita_id "  # Asumiendo que la relación se basa en muerte_subita_id
             f"LIMIT {limit} OFFSET {offset}"
         )
         hechos_muertes_subitas = db_original.consultar_db(consulta)
@@ -180,11 +181,9 @@ def llenar_tabla_hechos_warehouse():
         if not hechos_espacios:
             break
         for hecho_espacio in hechos_espacios:
-            # ESTO EN REALIDAD SE DEBERIA HACER O GUARDANDO LA LOCALIDAD EN LA SEDE O USANDO LOS DATOS DE LAT Y LONG
-            localidad_id = get_random_index(provincias_localidades_en_db[str(hecho_espacio[6])])
             base_sql += (
                 f"({_id}, {hecho_espacio[0]}, {hecho_espacio[1]}, {hecho_espacio[2]}, {hecho_espacio[3]}, {hecho_espacio[4]}, "
-                f"{data_or_null(hecho_espacio[5])}, {localidad_id}), "
+                f"{data_or_null(hecho_espacio[5])}, {hecho_espacio[6]}), "
             )
             _id += 1
         base_sql = base_sql[:-2] + ";"
@@ -203,20 +202,24 @@ def llenar_tabla_hechos_muertes_subitas_warehouse():
         if not hechos_muertes_subitas:
             break
         for hecho_muerte_subita in hechos_muertes_subitas:
+            inconveniente = hecho_muerte_subita[2] if hecho_muerte_subita[2] else "NULL"
             base_sql += (
-                f"({_id}, {hecho_muerte_subita[0]}, {hecho_muerte_subita[1]}, {hecho_muerte_subita[2]}, {data_or_null(None)}), "
+                f"({_id}, {hecho_muerte_subita[0]}, {hecho_muerte_subita[1]}, {inconveniente}, {hecho_muerte_subita[3]}), "
             )
             _id += 1
         base_sql = base_sql[:-2] + ";"
         offset += limit
-        db_datawarehouse.insertar_db(base_sql)
+        funco = db_datawarehouse.insertar_db(base_sql)
+        if not funco:
+            print(f"Error al insertar: {offset}")
+            break
 
-mover_entidades_a_warehouse()
-mover_sedes_espacios_a_warehouse()
-mover_representantes_a_warehouse()
-mover_muertes_subitas_a_warehouse()
-mover_inconvenientes_a_warehouse()
+# mover_entidades_a_warehouse()
+# mover_sedes_espacios_a_warehouse()
+# mover_representantes_a_warehouse()
+# mover_muertes_subitas_a_warehouse()
+# mover_inconvenientes_a_warehouse()
 
 # TABLAS DE HECHOS
-llenar_tabla_hechos_warehouse()
+# llenar_tabla_hechos_warehouse()
 llenar_tabla_hechos_muertes_subitas_warehouse()

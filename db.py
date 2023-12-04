@@ -14,6 +14,7 @@ class DB:
         self.conexion = conexion
         return conexion
 
+
     def consultar_db(self, consulta):
         cursor = self.conexion.cursor()
         cursor.execute(consulta)
@@ -79,5 +80,43 @@ class DB:
         self.conexion.commit()
         cursor.close()
 
+    def crear_tabla_localidades(self):
+        cursor = self.conexion.cursor()
+        cursor.execute(
+            """
+            CREATE TABLE localidades (
+
+            id INTEGER PRIMARY KEY,
+
+            nombre TEXT,
+
+            extension_km INTEGER,
+
+            poblacion INTEGER,
+
+            provincias_id INTEGER,
+
+            FOREIGN KEY (provincias_id) REFERENCES provincias (id)
+
+            );
+            """
+        )
+        self.conexion.commit()
+        cursor.close()
+    def agregar_localidad_a_sede(self):
+        cursor = self.conexion.cursor()
+
+        # Añadir la columna 'localidad_id' a la tabla 'sedes'
+        cursor.execute("ALTER TABLE sedes ADD localidad_id INT")
+
+        # Establecer la columna 'localidad_id' como clave foránea que referencia a 'localidades'
+        # cursor.execute("""
+        #     ALTER TABLE sedes
+        #     ADD CONSTRAINT fk_localidades
+        #     FOREIGN KEY (localidad_id) REFERENCES localidades(id)
+        # """)
+
+        self.conexion.commit()
 # # # Ejemplo de consulta SQL
 # db = DB()
+

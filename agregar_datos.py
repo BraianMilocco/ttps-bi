@@ -13,7 +13,7 @@ from auxiliares import (
     generar_fecha_aleatoria,
     fechas_estado_vencido,
 )
-from localidades import localidades
+from localidades import localidades, provincias_localidades_en_db
 
 db = DB()
 db.conectar_db("test.db")
@@ -213,7 +213,7 @@ INSERT_AT = 5000
 
 
 # def get_representante(id):
-#     _id = id + 1000100
+#     _id = id + 1200000
 #     return {
 #         "id": _id,
 #         "email": f"{id_generator(256)}@mail.com",
@@ -228,7 +228,7 @@ INSERT_AT = 5000
 #     pendiente = get_random_index([True, False, True, True ]) if not valida else False
 #     return {
 #         "espacio_id": get_random_from_range(5020, 100000),
-#         "user_id": _id,
+#         "user_id": id,
 #         "valida": valida,
 #         "pendiente": pendiente,
 #         "fecha_creacion": generar_fecha_aleatoria("2023-01-01", "2023-12-20"),
@@ -453,3 +453,45 @@ INSERT_AT = 5000
 #     muertesubita_creados = 0
 #     incovenientes = []
 #     incovenientes_creados = 0
+
+
+# def get_users_without_espacio():
+#     consulta = (
+#         """select users.id
+#         from users
+#         where users.id not in (
+#         select espacio_user.user_id  from espacio_user
+#         );"""
+#     )
+#     resultados = db.consultar_db(consulta)
+#     return [resultado[0] for resultado in resultados]
+
+
+# users_sin_espacio = get_users_without_espacio()
+# for user_id in users_sin_espacio:
+#     valida = get_random_index([True, False, True, True, False, True, True, True, True ])
+#     fecha_aleatoria = generar_fecha_aleatoria("2023-01-01", "2023-12-20")
+#     pendiente = get_random_index([True, False, True, True ]) if not valida else False
+#     consulta = (f"INSERT INTO espacio_user (espacio_id, user_id, valida, pendiente, fecha_creacion) VALUES "
+#                 f"({get_random_from_range(900000, 1000000)}, {user_id}, {valida}, "
+#                 f"{pendiente}, '{fecha_aleatoria}');")
+#     resultad = db.insertar_db(consulta)
+#     if not resultad:
+#         break
+
+def get_sedes_ids():
+    consulta = "SELECT id, provincia_id  FROM sedes;"
+    resultados = db.consultar_db(consulta)
+    return resultados
+
+
+sedes_ids = get_sedes_ids()
+sedes_listas = []
+for sede_id in sedes_ids:
+    localidad = get_random_index(
+        provincias_localidades_en_db[str(sede_id[1])]
+    )
+    base_sql = f"UPDATE sedes SET localidad_id = {localidad} WHERE id = {sede_id[0]};"
+    db.insertar_db(base_sql)
+    
+        
